@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Viewer</title>
+    <style>
+        /* General Styles */
+        body {
+            display: flex;
+            justify-content: space-around;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* Column Layout */
+        .column {
+            width: 45%;
+            padding: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0056a3;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        /* News Card */
+        .news-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Title and Source */
+        .news-title {
+            font-size: 1.1em;
+            margin: 0;
+        }
+
+        .news-title a {
+            text-decoration: none;
+            color: #0056a3;
+        }
+
+        .news-title a:hover {
+            text-decoration: underline;
+        }
+
+        .source {
+            font-size: 0.85em;
+            color: #666;
+            margin-left: 5px;
+        }
+
+        /* Summary Text */
+        .summary {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #444;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="column">
+        <h2>Spanish News</h2>
+        {% for entry in spanish_news %}
+            <div class="news-card">
+                <h3 class="news-title">
+                    <a href="{{ entry.link }}" target="_blank">{{ entry.title }}</a>
+                    <span class="source">[{{ entry.source }}]</span>
+                </h3>
+                <p class="summary">{{ entry.summary | safe }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="column">
+        <h2>Dutch News</h2>
+        {% for entry in dutch_news %}
+            <div class="news-card">
+                <h3 class="news-title">
+                    <a href="{{ entry.link }}" target="_blank">{{ entry.title }}</a>
+                    <span class="source">[{{ entry.source }}]</span>
+                </h3>
+                <p class="summary">{{ entry.summary | safe }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
